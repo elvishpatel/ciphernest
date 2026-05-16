@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════════════
+   CIPHERNEST DESIGN SYSTEM — "Cyber Fortress"
+   ══════════════════════════════════════════════════════════════ */
+
+@theme {
+  --color-void: #06060b;
+  --color-abyss: #0a0a12;
+  --color-obsidian: #0f1018;
+  --color-slate-dark: #141520;
+  --color-slate-mid: #1a1b2e;
+  --color-slate-light: #252640;
+  --color-ghost: #3a3b5a;
+  --color-mist: #6b6d8a;
+  --color-cloud: #9b9db8;
+  --color-pearl: #d0d2e8;
+  --color-white: #eeeef5;
+
+  --color-cyber: #00f0ff;
+  --color-cyber-dim: #00a8b3;
+  --color-cyber-glow: #00f0ff40;
+  --color-emerald: #00ff88;
+  --color-emerald-dim: #00b35f;
+  --color-emerald-glow: #00ff8840;
+  --color-crimson: #ff3355;
+  --color-crimson-dim: #b3243b;
+  --color-crimson-glow: #ff335540;
+  --color-amber: #ffaa00;
+  --color-amber-dim: #b37700;
+  --color-amber-glow: #ffaa0040;
+  --color-violet: #8855ff;
+  --color-violet-dim: #6633cc;
+  --color-violet-glow: #8855ff40;
+
+  --font-display: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-body: 'Outfit', sans-serif;
+}
+
+/* ── Base Reset ─────────────────────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-body);
+  background: var(--color-void);
+  color: var(--color-pearl);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: 
+    radial-gradient(ellipse at 20% 20%, #00f0ff06 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, #00ff8806 0%, transparent 50%),
+    var(--color-void);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--color-abyss); }
+::-webkit-scrollbar-thumb { background: var(--color-slate-light); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ghost); }
+
+/* ── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: var(--color-cyber);
+  color: var(--color-void);
+}
+
+/* ── Glass Card ─────────────────────────────────────────────── */
+.glass-panel {
+  background: linear-gradient(135deg, #ffffff06 0%, #ffffff02 100%);
+  border: 1px solid #ffffff08;
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+}
+
+.glass-panel-hover:hover {
+  border-color: var(--color-cyber-glow);
+  box-shadow: 0 0 30px #00f0ff08, inset 0 0 30px #00f0ff04;
+}
+
+/* ── Glow Effects ───────────────────────────────────────────── */
+.glow-cyber { box-shadow: 0 0 20px var(--color-cyber-glow), 0 0 60px #00f0ff10; }
+.glow-emerald { box-shadow: 0 0 20px var(--color-emerald-glow), 0 0 60px #00ff8810; }
+.glow-crimson { box-shadow: 0 0 20px var(--color-crimson-glow), 0 0 60px #ff335510; }
+
+.text-glow-cyber { text-shadow: 0 0 20px var(--color-cyber-glow); }
+.text-glow-emerald { text-shadow: 0 0 20px var(--color-emerald-glow); }
+
+/* ── Grid Overlay ───────────────────────────────────────────── */
+.grid-overlay {
+  background-image: 
+    linear-gradient(#ffffff04 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff04 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Scanline Effect ────────────────────────────────────────── */
+.scanline::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    #00f0ff03 2px,
+    #00f0ff03 4px
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* ── Input Styles ───────────────────────────────────────────── */
+.cn-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--color-obsidian);
+  border: 1px solid var(--color-slate-light);
+  border-radius: 12px;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.cn-input:focus {
+  border-color: var(--color-cyber);
+  box-shadow: 0 0 0 3px var(--color-cyber-glow), 0 0 20px #00f0ff10;
+}
+
+.cn-input::placeholder {
+  color: var(--color-ghost);
+}
+
+.cn-input-mono {
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+
+/* ── Button Styles ──────────────────────────────────────────── */
+.cn-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cn-btn-primary {
+  background: linear-gradient(135deg, var(--color-cyber) 0%, var(--color-cyber-dim) 100%);
+  color: var(--color-void);
+}
+
+.cn-btn-primary:hover {
+  box-shadow: 0 0 30px var(--color-cyber-glow), 0 4px 20px #00f0ff20;
+  transform: translateY(-1px);
+}
+
+.cn-btn-primary:active {
+  transform: translateY(0);
+}
+
+.cn-btn-ghost {
+  background: transparent;
+  color: var(--color-pearl);
+  border: 1px solid var(--color-slate-light);
+}
+
+.cn-btn-ghost:hover {
+  border-color: var(--color-cyber);
+  color: var(--color-cyber);
+  background: #00f0ff08;
+}
+
+.cn-btn-danger {
+  background: linear-gradient(135deg, var(--color-crimson) 0%, var(--color-crimson-dim) 100%);
+  color: var(--color-white);
+}
+
+.cn-btn-danger:hover {
+  box-shadow: 0 0 30px var(--color-crimson-glow);
+}
+
+.cn-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ── Loading Pulse ──────────────────────────────────────────── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* ── Fade In ────────────────────────────────────────────────── */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* ── Vault Lock Animation ───────────────────────────────────── */
+@keyframes lock-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--color-cyber-glow); }
+  50% { box-shadow: 0 0 0 10px transparent; }
+}
+
+.animate-lock-pulse {
+  animation: lock-pulse 2s ease-in-out infinite;
+}
+
+/* ── Mobile Responsiveness ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+  .show-on-mobile {
+    display: flex !important;
+  }
+  .main-content {
+    margin-left: 0 !important;
+    padding: 20px 16px 90px 16px !important;
+  }
+  .glass-panel {
+    padding: 20px 16px !important;
+  }
+  h1 {
+    font-size: 24px !important;
+  }
+}
+
+.show-on-mobile {
+  display: none;
+}
